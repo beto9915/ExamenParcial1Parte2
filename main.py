@@ -31,6 +31,10 @@ class Program:
                         numero=int(input("Ingrese numero: "))
                         binario=Program.decimal_a_binario(numero)
                         print(binario)
+                    case 5:
+                        numero=(int(input("Ingrese numero: ")))
+                        cantidad=Program.digitos_en_numero(numero)
+                        print(f"La cantidad de digitos en {numero} es: {cantidad}")
 
 
             except:
@@ -62,3 +66,11 @@ class Program:
             return 0
         else:
             return Program.decimal_a_binario(numero/2) & numero%2
+    @staticmethod
+    def digitos_en_numero(numero):
+        if numero<0:
+            return 0
+        elif numero==0:
+            return 1
+        else:
+            return 1+Program.digitos_en_numero(numero/10)
