@@ -28,6 +28,9 @@ class Program:
                         cantidad=Program.letra_en_cadena(cadena, letra)
                         print(f"La cantidad de veces que aparece {letra} en {cadena} es: {cantidad}")
                     case 4:
+                        numero=int(input("Ingrese numero: "))
+                        binario=Program.decimal_a_binario(numero)
+                        print(binario)
 
 
             except:
@@ -54,3 +57,8 @@ class Program:
         else:
             return Program.letra_en_cadena(cadena[1:], letra)
     @staticmethod
+    def decimal_a_binario(numero):
+        if numero==0:
+            return 0
+        else:
+            return Program.decimal_a_binario(numero/2) & numero%2
