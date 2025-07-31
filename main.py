@@ -10,6 +10,7 @@ class Program:
             print("4. Convertir decimal a binario")
             print("5. Contar digitos de un numero")
             print("6. Salir")
+            opcion=int(input("Seleccione una opcion: "))
             try:
                 match int(opcion):
                     case 1:
@@ -17,26 +18,34 @@ class Program:
                         b=int(input("Ingrese segundo numero: "))
                         mcd=Program.mcd(a,b)
                         print(f"El mcd es: {mcd}")
+                        print("\npresione ENTER para continuar...")
+                        input()
 
                     case 2:
                         palabra=input("Ingrese la palabra: ")
                         veces=int(input("Ingrese cuantas veces: "))
                         print(f"{Program.n_veces(palabra, veces)}")
+                        print("\npresione ENTER para continuar...")
+                        input()
                     case 3:
                         cadena=input("Ingrese cadena de texto: ")
                         letra=input("Ingrese la letra: ")
                         cantidad=Program.letra_en_cadena(cadena, letra)
                         print(f"La cantidad de veces que aparece {letra} en {cadena} es: {cantidad}")
+                        print("\npresione ENTER para continuar...")
+                        input()
                     case 4:
                         numero=int(input("Ingrese numero: "))
                         binario=Program.decimal_a_binario(numero)
                         print(binario)
+                        print("\npresione ENTER para continuar...")
+                        input()
                     case 5:
                         numero=(int(input("Ingrese numero: ")))
                         cantidad=Program.digitos_en_numero(numero)
                         print(f"La cantidad de digitos en {numero} es: {cantidad}")
-
-
+                        print("\npresione ENTER para continuar...")
+                        input()
             except:
                 print(f"Error")
 
@@ -48,10 +57,12 @@ class Program:
             return Program.mcd(b, a % b)
     @staticmethod
     def n_veces(palabra, veces):
-        if veces==0:
-            return 0
+        if veces == 0:
+            return ""
         else:
-            return palabra & Program.n_veces(palabra, veces)
+            print(palabra, end="")
+            return Program.n_veces(palabra, veces - 1)
+
     @staticmethod
     def letra_en_cadena(cadena, letra):
         if cadena == "":
@@ -61,16 +72,16 @@ class Program:
         else:
             return Program.letra_en_cadena(cadena[1:], letra)
     @staticmethod
-    def decimal_a_binario(numero):
+    def decimal_a_binario(n):
+        if n == 0:
+            return 0
+        else:
+            return n % 2 + 10 * Program.decimal_a_binario(n // 2)
+
+    @staticmethod
+    def digitos_en_numero(numero):
         if numero==0:
             return 0
         else:
-            return Program.decimal_a_binario(numero/2) & numero%2
-    @staticmethod
-    def digitos_en_numero(numero):
-        if numero<0:
-            return 0
-        elif numero==0:
-            return 1
-        else:
-            return 1+Program.digitos_en_numero(numero/10)
+            return 1+Program.digitos_en_numero(numero // 10)
+Program.main()
